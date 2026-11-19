@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DocSync AI</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="bg" aria-hidden="true"><div class="bg-img"></div><div class="bg-spot"></div><div class="bg-vignette"></div></div>
+<canvas id="shower" aria-hidden="true"></canvas>
+
+<nav class="topbar">
+  <a class="brand" href="#top"><b>D</b><span><strong>DOCSYNC</strong><small>AI</small></span></a>
+  <div class="links"><a href="#top">Home</a><a href="#github">GitHub</a><a href="#workspace">Workspace</a><a href="#report">Report</a></div>
+  <div class="nav-right"><span class="engine"><i></i> Local analysis engine</span><a class="btn-outline" href="#workspace">&gt;_ Analyse &rarr;</a></div>
+</nav>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="badge">DOCUMENTATION INTELLIGENCE</span>
+      <h1>Keep Docs<br><em>In Sync.</em></h1>
+      <p class="lead">Detect code changes, find outdated documentation and get evidence-backed fixes &mdash; straight from your GitHub repository.</p>
+      <div class="cta">
+        <a class="primary" href="#github">Check GitHub repo &rarr;</a>
+      </div>
+      <p class="hero-note"><i></i> Human review is required before changing project documentation.</p>
+    </div>
+    <div class="term" aria-hidden="true">
+      <div class="term-head"><i></i> DOCSYNC TERMINAL &gt;</div>
+      <div class="term-body">
+        <div class="t-cmd">docsync &gt; analyse README.md</div>
+        <div class="t-dim">comparing previous and updated code...</div>
+        <div class="t-dim">mapping symbols to documentation...</div>
+        <div class="t-dim">detecting signature drift...</div>
+        <div class="t-dim">generating suggested corrections...</div>
+        <div class="t-ok">Report ready. Review findings below. &#8599;</div>
+        <div class="t-done"><span>Analysis Complete &ndash; Report Live</span><b>0.84s</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats"><article><span>Code changes</span><strong id="changeCount">—</strong><small>Detected in this analysis</small></article><article><span>Outdated documentation</span><strong id="issueCount">—</strong><small>Confirmed mismatches</small></article><article><span>Needs review</span><strong id="reviewCount">—</strong><small>Ambiguous findings</small></article></section>
+
+  <section class="panel github-panel" id="github"><div class="heading"><div><small>GITHUB INTEGRATION</small><h2>Track changes from a GitHub repository</h2><p>Paste a public repository URL to inspect its latest commit and changed files.</p></div><span class="pill">● Public repositories</span></div>
+  <div class="github-input"><label for="githubUrl">GitHub repository URL<input id="githubUrl" type="url" placeholder="https://github.com/owner/repository"></label><button id="githubBtn">↻ Check for changes</button></div>
+  <div id="githubStatus" class="github-status" aria-live="polite">No repository checked yet. You can also paste code manually below.</div>
+  <div id="githubResults"></div></section>
+
+  <section class="panel" id="workspace"><div class="heading"><div><small>ANALYSIS WORKSPACE</small><h2>Compare code with documentation</h2><p>Enter previous code, updated code and the related documentation.</p></div><span class="pill">● Engine ready</span></div>
+  <div class="two"><label>Previous source code<textarea id="oldSource" spellcheck="false" placeholder="Paste old code..."></textarea></label><label>Updated source code<textarea id="newSource" spellcheck="false" placeholder="Paste new code..."></textarea></label></div>
+  <label class="docs">Project documentation<textarea id="documentation" spellcheck="false" placeholder="Paste README or Markdown documentation..."></textarea></label>
+  <div class="actions"><span id="statusMessage">Load the sample project to begin.</span><button id="analyzeBtn">✦ Analyse documentation</button></div></section>
+
+  <section class="panel" id="report"><div class="heading"><div><small>ANALYSIS REPORT</small><h2>Findings and recommendations</h2><p>Evidence-backed findings from the submitted inputs.</p></div><span id="resultBadge" class="pill">No analysis yet</span></div><div id="results" class="empty"><b>Your analysis will appear here</b><p>Load sample project and click Analyse documentation.</p></div></section>
+  <footer>DocSync AI · Prototype · Human review is required before changing project documentation.</footer>
+</main>
+<script src="background.js"></script><script src="script.js"></script></body></html>

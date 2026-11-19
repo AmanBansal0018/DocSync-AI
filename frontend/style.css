@@ -1,0 +1,140 @@
+/* DocSync AI — dark, spacious "navbar + hero" theme with a cursor-reactive background.
+   Visual-only: all class names / ids used by script.js are preserved. */
+:root{
+  --bg:#05070c;--ink:#f3f6ff;--muted:#8d99b8;--blue:#2f6bff;--cyan:#2de2e6;--green:#22d36b;
+  --panel:rgba(12,16,28,.72);--line:rgba(255,255,255,.09);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:Inter,"Segoe UI",system-ui,Arial,sans-serif;min-height:100vh;background:transparent}
+a{color:inherit;text-decoration:none}
+
+/* ---------- background ---------- */
+.bg{position:fixed;inset:0;z-index:-3;background:var(--bg);overflow:hidden}
+.bg-img{position:absolute;inset:0;background:url("bg.jpg") center/cover no-repeat}
+.bg-spot{position:absolute;inset:0;pointer-events:none}
+.bg-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,transparent 40%,rgba(3,4,8,.7) 100%)}
+#shower{position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
+
+/* ---------- top navbar ---------- */
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px clamp(18px,3vw,40px);background:rgba(5,7,12,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand b{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--cyan));font-size:18px;box-shadow:0 0 24px #2f6bff66}
+.brand span{display:flex;align-items:baseline;gap:5px}
+.brand strong{letter-spacing:.5px;font-size:16px}
+.brand small{color:var(--cyan);font-weight:700;font-size:12px}
+.links{display:flex;gap:34px;font-size:15px;color:#c3cce4}
+.links a{position:relative;padding:6px 0;transition:color .2s}
+.links a:hover{color:#fff}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--blue);transform:scaleX(0);transition:transform .25s}
+.links a:hover::after{transform:scaleX(1)}
+.nav-right{display:flex;align-items:center;gap:22px}
+.engine{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.engine i,.hero-note i,.term-head i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+.btn-outline{padding:12px 20px;border:1px solid #2a4fb0;border-radius:12px;background:rgba(20,40,100,.35);font-weight:700;font-size:14px;transition:.2s}
+.btn-outline:hover{background:rgba(47,107,255,.35);box-shadow:0 0 24px #2f6bff55}
+
+/* ---------- layout ---------- */
+main{max-width:1320px;margin:0 auto;padding:0 clamp(18px,4vw,56px) 40px}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:clamp(30px,5vw,80px);min-height:calc(100vh - 67px);padding:60px 0 70px}
+.badge{display:inline-block;padding:11px 20px;border:1px solid #1d3a82;background:rgba(18,36,90,.45);border-radius:999px;font-size:12px;font-weight:800;letter-spacing:2.4px;color:#5d92ff}
+.hero h1{font-size:clamp(46px,7.2vw,98px);line-height:1.02;letter-spacing:-.035em;margin:34px 0 30px;font-weight:800}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#fff 0%,#8fb0ff 55%,#3d7bff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(17px,1.6vw,22px);line-height:1.65;color:#aeb8d2;max-width:620px;margin:0 0 46px}
+.cta{display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+.cta .primary,.cta .ghost{display:inline-flex;align-items:center;justify-content:center;min-width:230px;padding:20px 32px;border-radius:14px;font-size:17px;font-weight:700;transition:.25s}
+.cta .primary{width:100%;max-width:560px;background:linear-gradient(180deg,#3a74ff,#2358e6);box-shadow:0 14px 40px #2f6bff55}
+.cta .primary:hover{transform:translateY(-3px);filter:brightness(1.12);box-shadow:0 18px 48px #2f6bff77}
+.cta .ghost{background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.cta .ghost:hover{background:rgba(255,255,255,.09);transform:translateY(-3px)}
+.hero-note{display:flex;align-items:center;gap:14px;margin:54px 0 0 22px;font-size:15px;color:var(--muted)}
+
+/* ---------- terminal card ---------- */
+.term{border:1px solid var(--line);border-radius:22px;background:var(--panel);backdrop-filter:blur(10px);box-shadow:0 30px 80px #000a,0 0 60px #2f6bff1f;overflow:hidden;font-family:"JetBrains Mono",Consolas,monospace}
+.term-head{display:flex;align-items:center;gap:12px;padding:20px 26px;border-bottom:1px solid var(--line);font-size:13px;font-weight:800;letter-spacing:.5px;color:var(--cyan)}
+.term-body{padding:38px 34px 44px;font-size:15px;line-height:1.5}
+.t-cmd{color:#fff;margin-bottom:16px}
+.t-dim{color:#5f6b86;margin:5px 0;opacity:0;animation:line .5s forwards}
+.t-dim:nth-of-type(2){animation-delay:.5s}.t-dim:nth-of-type(3){animation-delay:1s}.t-dim:nth-of-type(4){animation-delay:1.5s}.t-dim:nth-of-type(5){animation-delay:2s}
+.t-ok{color:var(--green);margin:22px 0 28px;opacity:0;animation:line .5s 2.6s forwards}
+.t-done{display:flex;justify-content:space-between;gap:12px;padding:18px 20px;border:1px solid #17306e;border-left:3px solid var(--cyan);border-radius:12px;background:rgba(20,50,120,.3);color:var(--cyan);opacity:0;animation:line .5s 3.2s forwards}
+.t-done b{color:#ffb84d}
+@keyframes line{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- stats + panels ---------- */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:28px}
+.stats article,.panel{background:var(--panel);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:0 20px 60px #0006}
+.stats article{transition:.3s}
+.stats article:hover{transform:translateY(-5px);border-color:#2f6bff77}
+.stats span,.stats small{display:block;color:var(--muted);font-size:13px}
+.stats strong{display:block;font-size:44px;margin:12px 0;font-weight:800;letter-spacing:-.02em}
+.panel{margin-bottom:28px;scroll-margin-top:90px}
+header,.heading,.actions{display:flex;justify-content:space-between;align-items:center;gap:18px}
+.heading{align-items:flex-start;margin-bottom:26px}
+.heading small{font-size:11px;letter-spacing:2px;font-weight:800;color:#5d92ff}
+h2{font-size:24px;margin:10px 0 6px;letter-spacing:-.01em}
+p{color:var(--muted);font-size:13.5px;line-height:1.6}
+.heading p{margin:5px 0}
+.pill{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;padding:9px 14px;font-size:12px;color:#c3cce4;white-space:nowrap}
+
+/* ---------- forms ---------- */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+label{display:block;font-size:13px;font-weight:700;color:#c3cce4}
+textarea,.github-input input{display:block;width:100%;margin-top:10px;border:1px solid var(--line);border-radius:14px;padding:15px;background:rgba(4,6,12,.7);color:#eef2ff;outline:none;transition:.2s}
+textarea{height:200px;font:12.5px/1.6 "JetBrains Mono",Consolas,monospace;resize:vertical}
+.github-input input{font:14px Inter,"Segoe UI",Arial,sans-serif}
+textarea::placeholder,.github-input input::placeholder{color:#5f6b86}
+textarea:focus,.github-input input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2f6bff33}
+.docs{margin-top:22px}.docs textarea{height:120px}
+.actions{margin-top:24px}
+button{border:0;border-radius:12px;padding:15px 24px;background:linear-gradient(180deg,#3a74ff,#2358e6);color:#fff;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 10px 30px #2f6bff44;transition:transform .2s,box-shadow .2s,filter .2s}
+button:hover{transform:translateY(-2px);filter:brightness(1.12)}
+button:disabled{opacity:.6;transform:none;cursor:wait}
+.actions span{font-size:12.5px;color:var(--muted)}
+
+/* ---------- results ---------- */
+.empty{text-align:center;border:1px dashed #ffffff2b;border-radius:16px;padding:44px;color:#aeb8d2;font-size:14px;background:rgba(255,255,255,.02)}
+.empty p{margin-bottom:0}
+.finding{border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:16px;padding:20px;margin:16px 0}
+.finding-top{display:flex;justify-content:space-between;gap:10px}
+.finding h3{font-size:15px;margin:0;text-transform:capitalize}
+.tag{font-size:10.5px;padding:6px 11px;border-radius:999px;font-weight:700}
+.outdated{background:#ff4d6d2e;color:#ffb3c0}
+.needs_review{background:#ffb84d2e;color:#ffdca0}
+.consistent{background:#22d36b2e;color:#9cf0c9}
+.meta{font-size:12px;color:var(--muted);margin-top:4px}
+.evidence{background:rgba(3,5,10,.7);border-radius:12px;padding:14px;font:12px/1.7 "JetBrains Mono",Consolas,monospace;overflow-wrap:anywhere;color:#dfe4fa}
+.suggestion{background:#22d36b1c;border:1px solid #22d36b44;color:#b9f5d8;padding:14px;border-radius:12px;margin-top:12px;font-size:13px}
+.copy{margin-top:10px;background:rgba(255,255,255,.07);color:#fff;border:1px solid var(--line);padding:7px 12px;font-size:11px;box-shadow:none}
+footer{text-align:center;color:#66728f;font-size:12px;padding:26px}
+
+/* ---------- github ---------- */
+.github-input{display:flex;align-items:flex-end;gap:16px}
+.github-input label{flex:1}
+.github-status{margin-top:16px;color:var(--muted);font-size:12.5px}
+.github-summary{margin-top:18px;padding:18px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px}
+.github-summary strong{font-size:14px}
+.github-files{margin-top:16px}
+.github-file{border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:12px;padding:14px;margin-top:10px}
+.github-file-head{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:12px}
+.github-file-name{font-family:"JetBrains Mono",Consolas,monospace;overflow-wrap:anywhere}
+.file-status{font-size:10px;font-weight:700;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.1);color:#d6dcf5}
+.file-status.added{background:#22d36b2e;color:#9cf0c9}
+.file-status.removed{background:#ff4d6d2e;color:#ffb3c0}
+.github-file small{color:var(--muted)}
+.github-file details{margin-top:10px}
+.github-file summary{font-size:11.5px;color:#7fa8ff;cursor:pointer}
+.github-file pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;overflow:auto;background:rgba(3,5,10,.7);border-radius:10px;padding:12px;font:11px/1.6 "JetBrains Mono",Consolas,monospace;color:#dfe4fa}
+.github-link{font-size:12px;color:#7fa8ff}
+
+/* ---------- responsive ---------- */
+@media(max-width:1000px){.hero{grid-template-columns:1fr;min-height:0;padding:44px 0}.links{display:none}.stats,.two{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .engine{display:none}.btn-outline{padding:10px 14px}
+  .cta .primary,.cta .ghost{width:100%}.hero-note{margin-left:0}
+  .heading,.actions{flex-direction:column;align-items:flex-start}
+  .panel{padding:20px}.actions button{width:100%}
+  .github-input{flex-direction:column;align-items:stretch}.github-input button{width:100%}
+  .term-body{padding:24px 20px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.t-dim,.t-ok,.t-done{animation:none;opacity:1}html{scroll-behavior:auto}}
